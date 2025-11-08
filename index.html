@@ -186,6 +186,8 @@
 
         // Open modal with post
         async function openPost(path) {
+			url_path = path.replace(/\.txt$/, "");
+			window.history.pushState({}, "", "?p=" + url_path);
             const modal = document.getElementById('modalOverlay');
             const modalContent = document.getElementById('modalContent');
             
@@ -225,6 +227,7 @@
         // Close modal
         function closeModal() {
             document.getElementById('modalOverlay').classList.remove('active');
+			window.history.pushState({}, "", "/");
         }
 
         // Parse post file
@@ -311,6 +314,15 @@
         function toggleSidebar() {
             document.querySelector('.sidebar').classList.toggle('active');
         }
+
+		window.addEventListener("popstate", () => {
+  			location.reload();
+		});
+
+		const params = new URLSearchParams(window.location.search);
+		if (params.get("p")) {
+			openPost(params.get("p") + ".txt")
+		}
 
         // Initialize on page load
         loadData();
