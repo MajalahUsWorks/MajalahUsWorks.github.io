@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Majalah UsWorks</title>
-	<link rel="stylesheet" href="styles.css?t=10221231">
+	<link rel="stylesheet" href="styles.css?t=1134123231">
 	<link rel="stylesheet" href="bakso-sapi.css?t=10211291">
 	<link rel="stylesheet" href="catread.css?t=10211291">
 	<link rel="stylesheet" href="momentz.css?t=10211291">
@@ -30,6 +30,11 @@
 
         <!-- Main Content -->
         <div class="main-content">
+            <button class="sidebar-toggle" onclick="toggleSidebar()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/>
+                </svg>
+            </button>
             <div id="postsContainer">
                 <div class="loading">Loading posts...</div>
             </div>
@@ -116,6 +121,7 @@
             document.querySelector('.category-item').classList.add('active');
             
             renderPosts();
+			toggleSidebar();
         }
 
         // Load posts by category
@@ -132,6 +138,7 @@
             });
             
             renderPosts();
+			toggleSidebar();
         }
 
         // Render posts
@@ -299,6 +306,10 @@
                 "'": '&#039;'
             };
             return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('active');
         }
 
         // Initialize on page load

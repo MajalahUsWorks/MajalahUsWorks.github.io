@@ -89,6 +89,7 @@ body {
     font-size: 24px;
     margin-bottom: 8px;
 	background: #90caf9;
+	display:inline-block;
 }
 
 .speech-bubble p {
@@ -393,4 +394,60 @@ body {
 .categories::-webkit-scrollbar-thumb:hover,
 .modal-content::-webkit-scrollbar-thumb:hover {
     background: #64b5f6;
+}
+
+/* Sidebar Toggle */
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    width: 40px;
+    height: 40px;
+    background: #1976d2;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: all 0.2s;
+}
+
+.sidebar-toggle:hover {
+    background: #1565c0;
+    transform: scale(1.1);
+}
+
+.sidebar-toggle svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        left: -100vw;
+        top: 0;
+        height: 100%;
+        z-index: 90;
+        transition: left 0.3s ease;
+        background: #a7d1ff;
+        padding: 20px;
+        width: 100vw;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .sidebar-toggle {
+        display: flex;
+    }
 }
