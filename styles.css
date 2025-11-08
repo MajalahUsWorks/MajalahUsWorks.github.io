@@ -1,0 +1,396 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    gap: 20px;
+}
+
+/* Left Sidebar */
+.sidebar {
+    width: 280px;
+    flex-shrink: 0;
+}
+
+.profile-section {
+    position: sticky;
+    top: 20px;
+}
+
+.home-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid #90caf9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+}
+
+.home-btn:hover {
+    background: #e3f2fd;
+    transform: scale(1.05);
+}
+
+.home-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: #1976d2;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 4px 12px rgba(25, 118, 210, 0.2);
+    margin-bottom: 20px;
+}
+
+.speech-bubble {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(25, 118, 210, 0.15);
+    margin-bottom: 20px;
+}
+
+.speech-bubble::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 30px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white;
+}
+
+.speech-bubble h2 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 8px;
+	background: #90caf9;
+}
+
+.speech-bubble p {
+    color: #304479;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.categories {
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(25, 118, 210, 0.1);
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.categories h4 {
+    color: #1976d2;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.category-item {
+    padding: 10px 12px;
+    margin-bottom: 5px;
+    background: #e3f2fd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #1565c0;
+    font-size: 14px;
+}
+
+.category-item:hover {
+    background: #90caf9;
+    color: white;
+    transform: translateX(5px);
+}
+
+.category-item.active {
+    background: #1976d2;
+    color: white;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.search-bar {
+    background: white;
+    border-radius: 25px;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 14px;
+    color: #333;
+}
+
+.search-bar input::placeholder {
+    color: #90caf9;
+}
+
+.post-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(25, 118, 210, 0.1);
+    margin-bottom: 20px;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.post-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(25, 118, 210, 0.15);
+}
+
+.post-header {
+    background: #90caf9;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+
+.post-header svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+}
+
+.post-title {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 20px 20px 10px 20px;
+    color: #1565c0;
+}
+
+.post-thumbnail {
+    width: 100%;
+    object-fit: cover;
+}
+
+.post-content {
+    padding: 20px;
+}
+
+.post-excerpt {
+    color: #555;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.post-category {
+    display: inline-block;
+    background: #e3f2fd;
+    color: #1565c0;
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+/* Modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal {
+    background: white;
+    border-radius: 15px;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(25, 118, 210, 0.3);
+	display: flex;
+  	flex-direction: column; /* Stacks children vertically (header, then content) */
+ 	overflow: hidden; /* Clips everything inside (including the scrollbar) */
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background: #1976d2;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.2s;
+}
+
+.modal-close:hover {
+    background: #1565c0;
+    transform: scale(1.1);
+}
+
+.modal-close svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+.modal-content {
+    padding: 30px;
+	/* Tells this element to grow and fill all remaining space */
+  	flex-grow: 1; 
+  	
+  	/* THIS IS THE FIX: */
+  	overflow-y: auto; /* Adds a scrollbar ONLY to this element, if needed */
+	overflow-x: hidden;
+  	
+  	/* Add your own padding so content isn't flush with the edges */
+  	padding: 1.5rem;
+}
+
+.modal .post-header {
+    background: #90caf9;
+    color: white;
+    margin-left: -30px;
+    margin-right: -30px;
+	margin-top:-30px;
+	/* Tells the header not to shrink */
+  	flex-shrink: 0;
+}
+
+.modal .post-title {
+    font-size: 32px;
+    padding: 20px 0 10px 0;
+    color: #1565c0;
+}
+
+.modal .post-meta {
+    padding: 0 0 20px 0;
+    color: #64b5f6;
+    font-size: 14px;
+    border-bottom: 2px solid #e3f2fd;
+}
+
+.modal .post-body {
+    padding: 30px 0;
+    line-height: 1.8;
+    color: #333;
+    font-size: 16px;
+}
+
+.modal .post-body img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.modal .post-body p {
+    margin-bottom: 15px;
+}
+
+.modal .post-thumbnail {
+    width: calc(100% + 60px);
+    margin: 0 -30px 20px -30px;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #1976d2;
+    font-size: 18px;
+}
+
+.error {
+    background: #ffebee;
+    color: #c62828;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.no-posts {
+    text-align: center;
+    padding: 60px 20px;
+    color: #64b5f6;
+    font-size: 18px;
+}
+
+/* Scrollbar styling */
+.categories::-webkit-scrollbar,
+.modal-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.categories::-webkit-scrollbar-track,
+.modal-content::-webkit-scrollbar-track {
+    background: #e3f2fd;
+    border-radius: 3px;
+}
+
+.categories::-webkit-scrollbar-thumb,
+.modal-content::-webkit-scrollbar-thumb {
+    background: #90caf9;
+    border-radius: 3px;
+}
+
+.categories::-webkit-scrollbar-thumb:hover,
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: #64b5f6;
+}

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Majalah UsWorks</title>
+	<link rel="stylesheet" href="styles.css?t=10221231">
+	<link rel="stylesheet" href="bakso-sapi.css?t=10211291">
+	<link rel="stylesheet" href="catread.css?t=10211291">
+	<link rel="stylesheet" href="momentz.css?t=10211291">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="profile-section">
+                <img src="images/icon.png" alt="Avatar" class="avatar">
+
+                <div class="speech-bubble">
+                    <h2 class="momentz">Majalah UsWorks</h2>
+                    <p class="catread">Selamat datang! Website ini adalah dunia yang kita bangun sama-sama. Gambar, cerita, animasi, dan komik kita.</p>
+                </div>
+
+                <div class="categories" id="categoriesList">
+                    <h4>Categories</h4>
+                    <div class="loading">Loading categories...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div id="postsContainer">
+                <div class="loading">Loading posts...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <button class="modal-close" onclick="closeModal()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+            </svg>
+        </button>
+        <div class="modal">
+            <div class="modal-content" id="modalContent">
+                <div class="loading">Loading post...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let chronoData = null;
+        let catalogData = null;
+        let currentView = 'chrono';
+        let currentCategory = null;
+
+        // Load JSON files
+        async function loadData() {
+            try {
+				const timestamp = new Date().getTime();
+                const [chronoRes, catalogRes] = await Promise.all([
+                    fetch(`chrono.json?t=${timestamp}`),
+                    fetch(`catalog.json?t=${timestamp}`)
+                ]);
+
+                if (!chronoRes.ok || !catalogRes.ok) {
+                    throw new Error('Failed to load data files');
+                }
+
+                chronoData = await chronoRes.json();
+                catalogData = await catalogRes.json();
+
+                renderCategories();
+                renderPosts();
+            } catch (error) {
+                document.getElementById('postsContainer').innerHTML = `
+                    <div class="error">
+                        <strong>Error loading blog data:</strong><br>
+                        ${error.message}<br><br>
+                        Make sure chrono.json and catalog.json are in the same directory as this HTML file.
+                    </div>
+                `;
+                document.getElementById('categoriesList').innerHTML = `
+                    <h4>Categories</h4>
+                    <div class="error">Failed to load categories</div>
+                `;
+            }
+        }
+
+        // Render categories sidebar
+        function renderCategories() {
+            const container = document.getElementById('categoriesList');
+            const categories = Object.keys(catalogData);
+
+            let html = '<h4>Categories</h4>';
+            html += `<div class="category-item active" onclick="loadAllPosts()">All Posts</div>`;
+            
+            categories.forEach(category => {
+                html += `<div class="category-item" onclick="loadCategory('${escapeHtml(category)}')">${escapeHtml(category)}</div>`;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // Load all posts (chronological)
+        function loadAllPosts() {
+            currentView = 'chrono';
+            currentCategory = null;
+            
+            // Update active category
+            document.querySelectorAll('.category-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelector('.category-item').classList.add('active');
+            
+            renderPosts();
+        }
+
+        // Load posts by category
+        function loadCategory(category) {
+            currentView = 'category';
+            currentCategory = category;
+            
+            // Update active category
+            document.querySelectorAll('.category-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.textContent === category) {
+                    item.classList.add('active');
+                }
+            });
+            
+            renderPosts();
+        }
+
+        // Render posts
+        function renderPosts() {
+            const container = document.getElementById('postsContainer');
+            let html = '';
+
+            if (currentView === 'chrono') {
+                chronoData.forEach(dateGroup => {
+                    dateGroup.posts.forEach(post => {
+                        html += createPostCard(post, dateGroup.date);
+                    });
+                });
+            } else {
+                const posts = catalogData[currentCategory];
+                if (posts && posts.length > 0) {
+                    posts.forEach(post => {
+						post.category = currentCategory;
+                        html += createPostCard(post, post.date);
+                    });
+                } else {
+                    html = '<div class="no-posts">No posts in this category yet.</div>';
+                }
+            }
+
+            container.innerHTML = html || '<div class="no-posts">No posts found.</div>';
+        }
+
+        // Create post card HTML
+        function createPostCard(post, date) {
+            return `
+                <div class="post-card" onclick="openPost('${escapeHtml(post.path)}')">
+                    <div class="post-header">
+                        Diunggah tanggal ${escapeHtml(date)}
+                    </div>
+                    ${post.thumbnail ? `<img src="${escapeHtml(post.thumbnail)}" alt="${escapeHtml(post.title)}" class="post-thumbnail">` : ''}
+                    <h2 class="post-title bakso-sapi">${escapeHtml(post.title)}</h2>
+                    <div class="post-content">
+                        <div class="post-excerpt">${escapeHtml(post.excerpt)}</div>
+                        <div class="post-category">${escapeHtml(post.category)}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Open modal with post
+        async function openPost(path) {
+            const modal = document.getElementById('modalOverlay');
+            const modalContent = document.getElementById('modalContent');
+            
+            modal.classList.add('active');
+            modalContent.innerHTML = '<div class="loading">Loading post...</div>';
+            
+            try {
+                const response = await fetch(path);
+                if (!response.ok) throw new Error('Post not found');
+                
+                const content = await response.text();
+                const post = parsePostFile(content);
+                
+                // Render post
+                let html = `
+                    <div class="post-header">
+                        Diunggah tanggal ${escapeHtml(post.date)}
+                    </div>
+                    ${post.thumbnail ? `<img src="${escapeHtml(post.thumbnail)}" alt="${escapeHtml(post.title)}" class="post-thumbnail">` : ''}
+                    <h1 class="post-title bakso-sapi">${escapeHtml(post.title)}</h1>
+                    <div class="post-meta">${escapeHtml(post.category)}</div>
+                    <div class="post-body">${formatContent(post.content)}</div>
+                `;
+                
+                modalContent.innerHTML = html;
+                
+            } catch (error) {
+                modalContent.innerHTML = `
+                    <div class="error">
+                        <strong>Error loading post:</strong><br>
+                        ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+        }
+
+        // Parse post file
+        function parsePostFile(content) {
+            const lines = content.split('\n');
+            const post = {
+                title: '',
+                thumbnail: '',
+                content: '',
+                date: '',
+                category: ''
+            };
+            
+            let currentSection = null;
+            let sectionContent = [];
+            
+            for (let line of lines) {
+                const sectionMatch = line.match(/^(?<!\\)\[(\w+)\]$/);
+                
+                if (sectionMatch) {
+                    if (currentSection && sectionContent.length > 0) {
+                        post[currentSection.toLowerCase()] = sectionContent.join('\n').trim();
+                    }
+                    currentSection = sectionMatch[1];
+                    sectionContent = [];
+                } else if (currentSection) {
+                    const unescapedLine = line.replace(/\\\[/g, '[');
+                    sectionContent.push(unescapedLine);
+                }
+            }
+            
+            if (currentSection && sectionContent.length > 0) {
+                post[currentSection.toLowerCase()] = sectionContent.join('\n').trim();
+            }
+            
+            return post;
+        }
+
+        // Format content with images
+        function formatContent(content) {
+            // Convert <img "path"> to proper HTML
+            content = content.replace(/<img\s+"([^"]+)">/g, '<img src="$1" alt="Post image">');
+            
+            // Convert line breaks to paragraphs
+            const paragraphs = content.split('\n\n').map(p => {
+                if (p.trim().startsWith('<img')) {
+                    return p.trim();
+                }
+                return `<p>${p.trim()}</p>`;
+            }).join('');
+            
+            return paragraphs;
+        }
+
+        // Filter posts by search
+        function filterPosts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.post-card');
+
+            cards.forEach(card => {
+                const title = card.querySelector('.post-title').textContent.toLowerCase();
+                const excerpt = card.querySelector('.post-excerpt').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Utility: Escape HTML
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        // Initialize on page load
+        loadData();
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+[Title]
+Example Title
+
+[Thumbnail]
+/images/post-cover.jpg
+
+[Content]
+Lorem ipsum dolor sit amet.
+
+Here's an image in the middle of content:
+<img "/images/img.png">
+
+More content here with \[escaped brackets\].
+
+[Date]
+01/15/2024
+
+[Category]
+Yuzu OC Lore
