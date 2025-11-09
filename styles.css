@@ -197,15 +197,12 @@ body {
     box-shadow: 0 4px 12px rgba(25, 118, 210, 0.1);
     margin-bottom: 20px;
 	width: 80%;
-	margin: 0 auto;
-}
-
-.chat-card iframe {
-  width: 100% !important; /* force the iframe itself to expand */
 }
 
 .posts-container {
 	margin-top: 40px;
+	display: flex;
+  	justify-content: center; /* centers the box horizontally */
 }
 
 .post-card:hover {
@@ -444,6 +441,9 @@ body {
         padding: 20px;
         width: 100vw;
     }
+	.chat-card {
+		width: 100%;
+	}
 
     .sidebar.active {
         left: 0;

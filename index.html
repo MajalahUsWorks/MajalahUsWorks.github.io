@@ -114,6 +114,7 @@
         function loadAllPosts() {
             currentView = 'chrono';
             currentCategory = null;
+			window.history.pushState({}, "", "?chr=chrono");
             
             // Update active category
             document.querySelectorAll('.category-item').forEach(item => {
@@ -129,6 +130,7 @@
         function loadCategory(category) {
             currentView = 'category';
             currentCategory = category;
+			window.history.pushState({}, "", "?cat=" + category);
             
             // Update active category
             document.querySelectorAll('.category-item').forEach(item => {
@@ -144,7 +146,8 @@
 
         function loadGuestbook() {
             currentView = 'guestbook';
-            currentCategory = 'Guestbook';
+            currentCategory = "Guestbook";
+			window.history.pushState({}, "", "?gu=guestbook");
 
             // Update active category
             document.querySelectorAll('.category-item').forEach(item => {
@@ -358,13 +361,22 @@
   			location.reload();
 		});
 
-		const params = new URLSearchParams(window.location.search);
-		if (params.get("p")) {
-			openPost(params.get("p") + ".txt")
-		}
+		async function init() {
+        	await loadData();
 
-        // Initialize on page load
-        loadData();
+			const params = new URLSearchParams(window.location.search);
+			if (params.get("p")) {
+				openPost(params.get("p") + ".txt")
+			} else if (params.get("gu")) {
+				loadGuestbook();	
+			} else if (params.get("cat")) {
+				loadCategory(params.get("cat"))
+			} else if (params.get("chr")) {
+				loadAllPosts()
+			}
+		}
+		
+		init();
     </script>
 </body>
 </html>
