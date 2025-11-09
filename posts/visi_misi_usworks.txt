@@ -1,23 +1,21 @@
 [Title]
-Visi UsWorks
+Visi dan Misi UsWorks
 
 [Thumbnail]
 
 [Content]
 Haii! :D 
 
-Visi kami adalah untuk mengembangkan budaya animasi, komik, gambar, dan cerita yang mendunia dan menjadi kebanggaan Indonesia.
+<b>Visi kami adalah mengembangkan budaya animasi, komik, gambar, dan cerita yang mendunia dan menjadi kebanggaan Indonesia.</b>
 
-Simpelnya gini saja. Kalau jepang punya anime dan manga yang menjadi salah satu simbol budaya pop mereka. Kami ingin Indonesia juga punya budaya seni yang juga mencerminkan budaya pop di Indonesia. Ingat, budaya pop seni Indonesia tidak selalu harus mencerminkan budaya seni tradisional Indonesia. Misal wayang bukan berarti harus masuk ke dalam tiap komik kita. Tapi bisa jadi mereka berhubungan. Contohnya kita mungkin memperlihatkan karakter yang makan tempe dan tahu di beberapa gambar. Bisa jadi karena karakter di gambar tersebut memang makanan favoritnya adalah tempe, misalnya. 
+Simpelnya gini aja. Kalau Jepang punya anime dan manga yang menjadi salah satu simbol budaya pop mereka, kami ingin Indonesia juga punya budaya seni yang juga menjadi simbol budaya pop di Indonesia. Ingat, budaya pop seni Indonesia tidak selalu harus mencerminkan budaya seni tradisional Indonesia. Misal wayang bukan berarti harus masuk ke dalam tiap komik kita. Walau begitu, bisa jadi dua budaya itu berhubungan. Contohnya kita mungkin memperlihatkan karakter yang makan tempe dan tahu di beberapa gambar.
 
 Lalu misi UsWorks.
 
-Misi UsWorks adalah untuk mengambil semua langkah yang dapat diambil agar visi tersebut bisa tercapai. Ada dua garis besar dari langkah-langkah itu:
+<b>Misi UsWorks adalah untuk mengambil semua langkah yang dapat diambil agar visi tersebut bisa tercapai</b>. Ada dua garis besar dari langkah-langkah itu:
 
-<ol style="margin-left: 20px">
-<li>UsWorks membuat komunitas yang rukun dan konstruktif.</li>
-<li>UsWorks membuat media dan berbagai fasilitas untuk mengembangkan artist dan writer beserta karya-karya mereka yang di-submit ke UsWorks.</li>
-</ol>
+1. UsWorks membuat komunitas yang rukun dan konstruktif.
+2. UsWorks membuat media dan berbagai fasilitas untuk mengembangkan artist dan writer beserta karya-karya mereka yang di-submit ke UsWorks.
 
 Nah, website ini adalah salah satu upaya dari misi-misi itu. 
 

@@ -1,11 +1,23 @@
 [
   {
+    "date": "09/11/2025",
+    "posts": [
+      {
+        "path": "posts/apa_itu_usworks.txt",
+        "title": "Apa itu UsWorks?",
+        "excerpt": "Hai! Dan salam kenal!\n\nOKE. Jadi apa itu UsWorks? Apakah UsWorks hanyalah majalah? atau malah hanya komunitas kecil tanpa tujuan pasti? Kalau kalian u...",
+        "thumbnail": "",
+        "category": "Tentang UsWorks"
+      }
+    ]
+  },
+  {
     "date": "08/11/2025",
     "posts": [
       {
         "path": "posts/visi_misi_usworks.txt",
-        "title": "Visi UsWorks",
-        "excerpt": "Haii! :D \n\nVisi kami adalah untuk mengembangkan budaya animasi, komik, gambar, dan cerita yang mendunia dan menjadi kebanggaan Indonesia.\n\nSimpelnya g...",
+        "title": "Visi dan Misi UsWorks",
+        "excerpt": "Haii! :D \n\nVisi kami adalah mengembangkan budaya animasi, komik, gambar, dan cerita yang mendunia dan menjadi kebanggaan Indonesia.\n\nSimpelnya...",
         "thumbnail": "",
         "category": "Tentang UsWorks"
       }

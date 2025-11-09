@@ -44,6 +44,7 @@ def parse_post(content, filename):
     # Generate excerpt (first 150 chars, strip image tags)
     content_without_images = re.sub(r'<img\s+"[^"]*">', '', post['content'])
     post['excerpt'] = content_without_images[:150].strip()
+    post['excerpt'] = re.sub(r'<[^>]*>', '', post['excerpt'])
     if len(content_without_images) > 150:
         post['excerpt'] += '...'
     

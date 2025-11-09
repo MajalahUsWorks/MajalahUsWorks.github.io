@@ -202,7 +202,8 @@ body {
 .posts-container {
 	margin-top: 40px;
 	display: flex;
-  	justify-content: center; /* centers the box horizontally */
+  	justify-content: center;
+	flex-direction: column;
 }
 
 .post-card:hover {

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Majalah UsWorks</title>
-	<link rel="stylesheet" href="styles.css?t=1131230131">
+	<link rel="stylesheet" href="styles.css?t=1131232131">
 	<link rel="stylesheet" href="bakso-sapi.css?t=10211291">
 	<link rel="stylesheet" href="catread.css?t=10211291">
 	<link rel="stylesheet" href="momentz.css?t=10211291">
@@ -318,7 +318,9 @@
                 if (p.trim().startsWith('<img')) {
                     return p.trim();
                 }
-                return `<p>${p.trim()}</p>`;
+				return '<p>' + `${p.trim()}`.split('\n').map(l => {
+					return l.trim() + '<br>';
+				}).join('') + '</p>';
             }).join('');
             
             return paragraphs;
