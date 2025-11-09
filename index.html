@@ -8,9 +8,7 @@
 	<link rel="stylesheet" href="bakso-sapi.css?t=10211291">
 	<link rel="stylesheet" href="catread.css?t=10211291">
 	<link rel="stylesheet" href="momentz.css?t=10211291">
-	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-	<meta http-equiv="Pragma" content="no-cache" />
-	<meta http-equiv="Expires" content="0" />
+	<meta http-equiv="Cache-Control" content="no-cache" />
 </head>
 <body>
     <div class="container">
@@ -33,7 +31,7 @@
 
         <!-- Main Content -->
         <div class="main-content">
-            <button class="sidebar-toggle" onclick="toggleSidebar()">
+            <button class="sidebar-toggle" onclick="toggleSidebar(true)">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/>
                 </svg>
@@ -128,7 +126,7 @@
             document.querySelector('.category-item').classList.add('active');
             
             renderPosts();
-			toggleSidebar();
+			toggleSidebar(false);
         }
 
         // Load posts by category
@@ -148,7 +146,7 @@
             });
             
             renderPosts();
-			toggleSidebar();
+			toggleSidebar(false);
         }
 
         function loadGuestbook(isNewLoad = false) {
@@ -167,7 +165,7 @@
             });
 
             renderPosts();
-            toggleSidebar();
+            toggleSidebar(false);
         }
 
         // Render posts
@@ -378,8 +376,12 @@
             return text.replace(/["']/g, m => map[m]);
         }
 
-        function toggleSidebar() {
-            document.querySelector('.sidebar').classList.toggle('active');
+        function toggleSidebar(isShow) {
+			if (isShow) {	
+            	document.querySelector('.sidebar').classList.add('active');
+			} else {
+            	document.querySelector('.sidebar').classList.remove('active');
+			}
         }
 
 		window.addEventListener("popstate", () => {
