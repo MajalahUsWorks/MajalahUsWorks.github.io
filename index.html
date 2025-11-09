@@ -281,7 +281,14 @@
 
         // Close modal
         function closeModal() {
-			window.history.back();
+			document.getElementById('modalOverlay').classList.remove('active');
+			if (currentView == "chrono") {
+				window.history.pushState({}, "", "?chr=chrono");
+			} else if (currentView == "category") {
+				window.history.pushState({}, "", "?cat=" + currentCategory);
+			} else if (currentView == "guestbook") {
+				window.history.pushState({}, "", "?gu=guestbook");
+			}
         }
 
         // Parse post file
@@ -395,15 +402,14 @@
 
 		function route() {
 			const params = new URLSearchParams(window.location.search);
-            document.getElementById('modalOverlay').classList.remove('active');
-			if (params.get("p")) {
-				openPost(params.get("p") + ".txt", true)
+            if (params.get("p")) {
+				openPost(params.get("p") + ".txt", false)
 			} else if (params.get("gu")) {
-				loadGuestbook(true);	
+				loadGuestbook(false);	
 			} else if (params.get("cat")) {
-				loadCategory(params.get("cat"), true)
+				loadCategory(params.get("cat"), false)
 			} else if (params.get("chr")) {
-				loadAllPosts(true)
+				loadAllPosts(false)
 			}
 		}
 		
