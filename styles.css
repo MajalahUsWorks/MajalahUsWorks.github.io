@@ -229,8 +229,8 @@ body {
 .post-title {
     font-size: 24px;
     font-weight: bold;
-    padding: 20px 20px 10px 20px;
     color: #1565c0;
+    padding: 20px 20px 10px 20px;
 }
 
 .post-thumbnail {
@@ -238,14 +238,11 @@ body {
     object-fit: cover;
 }
 
-.post-content {
-    padding: 20px;
-}
-
 .post-excerpt {
     color: #555;
     line-height: 1.6;
     font-size: 15px;
+	padding: 0px 20px 10px 20px;
 }
 
 .post-category {
@@ -255,7 +252,9 @@ body {
     padding: 5px 12px;
     border-radius: 12px;
     font-size: 12px;
-    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+	margin-bottom: 10px
 }
 
 /* Modal */
@@ -320,16 +319,15 @@ body {
 }
 
 .modal-content {
-    padding: 30px;
 	/* Tells this element to grow and fill all remaining space */
   	flex-grow: 1; 
   	
   	/* THIS IS THE FIX: */
   	overflow-y: auto; /* Adds a scrollbar ONLY to this element, if needed */
 	overflow-x: hidden;
-  	
-  	/* Add your own padding so content isn't flush with the edges */
-  	padding: 1.5rem;
+  	padding-top: 30px;
+	padding-right: 30px;
+	padding-left: 30px;
 }
 
 .modal .post-header {
@@ -376,7 +374,7 @@ body {
 
 .modal .post-thumbnail {
     width: calc(100% + 60px);
-    margin: 0 -30px 20px -30px;
+    margin: 0 -30px 0px -30px;
     object-fit: cover;
     border-radius: 0;
 }
@@ -483,4 +481,35 @@ body {
 	    height: 24px;
 	    fill: white;
 	}
+}
+
+@media (min-width: 992px) {
+    .post-card-body {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .post-card .post-thumbnail {
+        flex: 0 0 40%; /* Image takes up 40% of the width */
+        max-width: 40%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .post-card .post-text-content {
+        flex: 1 1 60%; /* Text content takes the remaining 60% */
+        padding: 0; /* Reset padding as it's now on the inner elements */
+    }
+
+    .modal-content .post-thumbnail {
+        float: left;
+        width: 50%;
+        margin-right: 20px;
+    }
+
+    .modal-content .post-header {
+        /* Ensure header is not affected by the float */
+        clear: both;
+    }
 }

@@ -104,7 +104,7 @@
             html += `<div class="category-item" id="guestbook" onclick="loadGuestbook()">Ruang Ngobrol</div>`;
             
             categories.forEach(category => {
-                html += `<div class="category-item" onclick="loadCategory('${escapeHtml(category)}')">${escapeHtml(category)}</div>`;
+                html += `<div class="category-item" onclick="loadCategory('${escapeJs(category)}')">${escapeHtml(category)}</div>`;
             });
 
             container.innerHTML = html;
@@ -216,11 +216,15 @@
                     <div class="post-header">
                         Diunggah tanggal ${escapeHtml(date)}
                     </div>
-                    ${post.thumbnail ? `<img src="${escapeHtml(post.thumbnail)}" alt="${escapeHtml(post.title)}" class="post-thumbnail">` : ''}
-                    <h2 class="post-title bakso-sapi">${escapeHtml(post.title)}</h2>
-                    <div class="post-content">
-                        <div class="post-excerpt">${escapeHtml(post.excerpt)}</div>
-                        <div class="post-category">${escapeHtml(post.category)}</div>
+                    <div class="post-card-body">
+                        ${post.thumbnail ? `<img src="${escapeHtml(post.thumbnail)}" alt="${escapeHtml(post.title)}" class="post-thumbnail">` : ''}
+                        <div class="post-text-content">
+                            <h2 class="post-title bakso-sapi">${escapeHtml(post.title)}</h2>
+                            <div class="post-content">
+                                <div class="post-excerpt">${escapeHtml(post.excerpt)}</div>
+                                <div class="post-category">${escapeHtml(post.category)}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             `;
@@ -269,7 +273,7 @@
         // Close modal
         function closeModal() {
             document.getElementById('modalOverlay').classList.remove('active');
-			window.history.pushState({}, "", "/");
+			window.history.back();
         }
 
         // Parse post file
@@ -355,25 +359,40 @@
             return text.replace(/[&<>"']/g, m => map[m]);
         }
 
+        // Utility: Escape HTML
+        function escapeJs(text) {
+            const map = {
+                '"': '\\"',
+                "'": "\\'"
+            };
+            return text.replace(/["']/g, m => map[m]);
+        }
+
         function toggleSidebar() {
             document.querySelector('.sidebar').classList.toggle('active');
         }
 
 		window.addEventListener("popstate", () => {
-  			location.reload();
+			route();
 		});
 
 		async function init() {
         	await loadData();
+			route();
+		}
 
+		function route() {
 			const params = new URLSearchParams(window.location.search);
 			if (params.get("p")) {
 				openPost(params.get("p") + ".txt")
 			} else if (params.get("gu")) {
+            	document.getElementById('modalOverlay').classList.remove('active');
 				loadGuestbook();	
 			} else if (params.get("cat")) {
+            	document.getElementById('modalOverlay').classList.remove('active');
 				loadCategory(params.get("cat"))
 			} else if (params.get("chr")) {
+            	document.getElementById('modalOverlay').classList.remove('active');
 				loadAllPosts()
 			}
 		}
