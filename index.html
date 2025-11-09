@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Majalah UsWorks</title>
-	<link rel="stylesheet" href="styles.css?t=1134123231">
+	<link rel="stylesheet" href="styles.css?t=1131230131">
 	<link rel="stylesheet" href="bakso-sapi.css?t=10211291">
 	<link rel="stylesheet" href="catread.css?t=10211291">
 	<link rel="stylesheet" href="momentz.css?t=10211291">
@@ -101,6 +101,7 @@
 
             let html = '<h4>Categories</h4>';
             html += `<div class="category-item active" onclick="loadAllPosts()">All Posts</div>`;
+            html += `<div class="category-item" id="guestbook" onclick="loadGuestbook()">Ruang Ngobrol</div>`;
             
             categories.forEach(category => {
                 html += `<div class="category-item" onclick="loadCategory('${escapeHtml(category)}')">${escapeHtml(category)}</div>`;
@@ -141,10 +142,48 @@
 			toggleSidebar();
         }
 
+        function loadGuestbook() {
+            currentView = 'guestbook';
+            currentCategory = 'Guestbook';
+
+            // Update active category
+            document.querySelectorAll('.category-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.id === 'guestbook') {
+                    item.classList.add('active');
+                }
+            });
+
+            renderPosts();
+            toggleSidebar();
+        }
+
         // Render posts
         function renderPosts() {
             const container = document.getElementById('postsContainer');
             let html = '';
+
+            if (currentView === 'guestbook') {
+				chatContainer = document.createElement('div');
+				chatContainer.classList.add('chat-card');
+                chatContainer.innerHTML = `
+                    <div class="post-header">
+                    </div>
+                    <h1 class="bakso-sapi chat-header">Ruang Ngobrol</h1>
+                    <p class="chat-subtitle">Berikan komentar, pendapat, pertanyaanmu di bawah ini!</p>
+                `;
+                const script = document.createElement('script');
+                script.src = 'https://utteranc.es/client.js';
+                script.setAttribute('repo', 'MajalahUsWorks/MajalahUsWorks.github.io');
+                script.setAttribute('issue-term', 'pathname');
+                script.setAttribute('theme', 'github-light');
+                script.setAttribute('crossorigin', 'anonymous');
+                script.async = true;
+                chatContainer.appendChild(script);
+				container.innerHTML = '';
+				container.appendChild(chatContainer);
+                return;
+            }
 
             if (currentView === 'chrono') {
                 chronoData.forEach(dateGroup => {

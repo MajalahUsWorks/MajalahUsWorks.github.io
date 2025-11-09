@@ -176,6 +176,34 @@ body {
     cursor: pointer;
 }
 
+.chat-header {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 20px 20px 10px 20px;
+    color: #1565c0;
+}
+
+.chat-subtitle {
+    color: #555;
+    line-height: 1.6;
+    font-size: 15px;
+    padding: 0px 20px 10px 20px;
+}
+
+.chat-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(25, 118, 210, 0.1);
+    margin-bottom: 20px;
+	width: 80%;
+	margin: 0 auto;
+}
+
+.chat-card iframe {
+  width: 100% !important; /* force the iframe itself to expand */
+}
+
 .posts-container {
 	margin-top: 40px;
 }
