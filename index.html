@@ -111,10 +111,12 @@
         }
 
         // Load all posts (chronological)
-        function loadAllPosts() {
+        function loadAllPosts(isNewLoad = false) {
             currentView = 'chrono';
             currentCategory = null;
-			window.history.pushState({}, "", "?chr=chrono");
+			if (!isNewLoad) {
+				window.history.pushState({}, "", "?chr=chrono");
+			}
             
             // Update active category
             document.querySelectorAll('.category-item').forEach(item => {
@@ -127,10 +129,12 @@
         }
 
         // Load posts by category
-        function loadCategory(category) {
+        function loadCategory(category, isNewLoad = false) {
             currentView = 'category';
             currentCategory = category;
-			window.history.pushState({}, "", "?cat=" + category);
+			if (!isNewLoad) {
+				window.history.pushState({}, "", "?cat=" + category);
+			}
             
             // Update active category
             document.querySelectorAll('.category-item').forEach(item => {
@@ -144,10 +148,12 @@
 			toggleSidebar();
         }
 
-        function loadGuestbook() {
+        function loadGuestbook(isNewLoad = false) {
             currentView = 'guestbook';
             currentCategory = "Guestbook";
-			window.history.pushState({}, "", "?gu=guestbook");
+			if (!isNewLoad) {
+				window.history.pushState({}, "", "?gu=guestbook");
+			}
 
             // Update active category
             document.querySelectorAll('.category-item').forEach(item => {
@@ -231,9 +237,11 @@
         }
 
         // Open modal with post
-        async function openPost(path) {
-			url_path = path.replace(/\.txt$/, "");
-			window.history.pushState({}, "", "?p=" + url_path);
+        async function openPost(path, isNewLoad = false) {
+			if (!isNewLoad) {
+				url_path = path.replace(/\.txt$/, "");
+				window.history.pushState({}, "", "?p=" + url_path);
+			}
             const modal = document.getElementById('modalOverlay');
             const modalContent = document.getElementById('modalContent');
             
@@ -272,7 +280,6 @@
 
         // Close modal
         function closeModal() {
-            document.getElementById('modalOverlay').classList.remove('active');
 			window.history.back();
         }
 
@@ -383,17 +390,15 @@
 
 		function route() {
 			const params = new URLSearchParams(window.location.search);
+            document.getElementById('modalOverlay').classList.remove('active');
 			if (params.get("p")) {
-				openPost(params.get("p") + ".txt")
+				openPost(params.get("p") + ".txt", true)
 			} else if (params.get("gu")) {
-            	document.getElementById('modalOverlay').classList.remove('active');
-				loadGuestbook();	
+				loadGuestbook(true);	
 			} else if (params.get("cat")) {
-            	document.getElementById('modalOverlay').classList.remove('active');
-				loadCategory(params.get("cat"))
+				loadCategory(params.get("cat"), true)
 			} else if (params.get("chr")) {
-            	document.getElementById('modalOverlay').classList.remove('active');
-				loadAllPosts()
+				loadAllPosts(true)
 			}
 		}
 		
