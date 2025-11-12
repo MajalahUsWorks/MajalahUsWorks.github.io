@@ -1,0 +1,21 @@
+[Title]
+Ayaka dan Padang Rumput
+
+[Thumbnail]
+/images/ayaka_dan_padang_rumput.png
+
+[Content]
+Apakah aku memang ditakdirkan untuk sendiri?
+Kurasa perlahan aku mulai terbiasa.
+Aku menarik napas dalam-dalam.
+Tenang sekali di tepi tebing ini.
+Walau begitu, pikiranku tetap terbang ke harapan kecil itu. Walaupun ia berada di tengah ketenangan ini.
+Harapan untuk mempunyai suatu keluarga.
+
+<b>- Hoshizora Yuzu & Hoshizora Chi (BG)</b>
+
+[Date]
+12/11/2025
+
+[Category]
+Shironeko (Hoshizora) Ayaka
