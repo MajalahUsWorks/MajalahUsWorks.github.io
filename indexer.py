@@ -57,7 +57,7 @@ def parse_post(content, filename):
 def generate_indexes(posts):
     """Generate chrono.json and catalog.json from parsed posts."""
     # Sort by date (newest first)
-    sorted_posts = sorted(posts, key=lambda p: datetime.strptime(p['date'], '%m/%d/%Y'), reverse=True)
+    sorted_posts = sorted(posts, key=lambda p: datetime.strptime(p['date'], '%d/%m/%Y'), reverse=True)
     
     # Generate chrono.json
     chrono_map = {}
