@@ -1,0 +1,16 @@
+[Title]
+Acak Namun Tak Berarti
+
+[Thumbnail]
+/images/AcakNamunTakBerarti.jpg
+
+[Content]
+Mural
+
+- Sayabelva
+
+[Date]
+23/11/2025
+
+[Category]
+Miscellanous Arts

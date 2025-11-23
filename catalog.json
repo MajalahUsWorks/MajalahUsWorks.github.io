@@ -1,4 +1,29 @@
 {
+  "Takopi's Original Sin Fanart": [
+    {
+      "path": "posts/different_shades_of_rain.txt",
+      "title": "Different Shades of Rain",
+      "excerpt": "\"Takopi.. if only my rain was the same as yours.\"\n\n-Beishark",
+      "thumbnail": "images/different_shades_of_rain.png",
+      "date": "23/11/2025"
+    },
+    {
+      "path": "posts/smile.txt",
+      "title": "Smile!",
+      "excerpt": "\"Hidup memanglah berat, tapi aku kan' berjuang keras agar senyuman dapat terukir di wajahmu selalu-pi!!!”\n\n- Rii",
+      "thumbnail": "/images/smile.png",
+      "date": "23/11/2025"
+    }
+  ],
+  "Miscellanous Arts": [
+    {
+      "path": "posts/acak_namun_tak_berarti.txt",
+      "title": "Acak Namun Tak Berarti",
+      "excerpt": "Mural\n\n- Sayabelva",
+      "thumbnail": "/images/AcakNamunTakBerarti.jpg",
+      "date": "23/11/2025"
+    }
+  ],
   "Dharma - Story": [
     {
       "path": "posts/dharma.txt",
