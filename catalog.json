@@ -1,9 +1,18 @@
 {
+  "Yua & Ra": [
+    {
+      "path": "posts/surat_cinta_untuk_starla.txt",
+      "title": "Surat Cinta Untuk Starla - Yua & Ra Cover MV",
+      "excerpt": "Cover MV dari Yuzu dan Chi. Featuring Yua dan Ra dari komik kami yang masih on-progress! Stay tune buat komiknya yah!",
+      "thumbnail": "/images/surat_cinta.png",
+      "date": "16/01/2026"
+    }
+  ],
   "Takopi's Original Sin Fanart": [
     {
       "path": "posts/different_shades_of_rain.txt",
       "title": "Different Shades of Rain",
-      "excerpt": "\"Takopi.. if only my rain was the same as yours.\"\n\n-Beishark",
+      "excerpt": "\"Takopi.. if only my rain was the same as yours.\"\n\n- Beishark",
       "thumbnail": "images/different_shades_of_rain.png",
       "date": "23/11/2025"
     },
@@ -62,13 +71,13 @@
     {
       "path": "posts/apa_itu_usworks.txt",
       "title": "Apa itu UsWorks?",
-      "excerpt": "Hai! Dan salam kenal!\n\nOKE. Jadi apa itu UsWorks? Apakah UsWorks hanyalah majalah? atau malah hanya komunitas kecil tanpa tujuan pasti? Kalau kalian u...",
+      "excerpt": "Hai! Dan salam kenal!\n\nApa itu UsWorks? Apakah hanya komunitas kecil tanpa tujuan pasti? Kalau kalian udah baca postingan Visi UsWorks, maka kalian ta...",
       "thumbnail": "",
       "date": "09/11/2025"
     },
     {
       "path": "posts/visi_misi_usworks.txt",
-      "title": "Visi dan Misi UsWorks",
+      "title": "Visi UsWorks",
       "excerpt": "Haii! :D \n\nVisi kami adalah mengembangkan budaya animasi, komik, gambar, dan cerita yang mendunia dan menjadi kebanggaan Indonesia.\n\nSimpelnya...",
       "thumbnail": "",
       "date": "08/11/2025"
