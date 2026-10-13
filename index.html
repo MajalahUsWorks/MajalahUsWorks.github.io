@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UsWorks — Studio Animasi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="momentz.css" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#1a1d23;--fg:#f4f7fb;--mut:#9aa6b8;--card:#232832;--line:#2f3643;--acc:#4d94ff;--btn:#2563eb;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+
+
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:'Bricolage Grotesque',system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav{display:flex; justify-content: center; align-items:center;gap:18px;height:60px}
+.logo{color:var(--fg);text-decoration:none;font-family:"Momentz";background:#1976d2;}
+nav a.l{color:var(--mut);text-decoration:none;font-size:.95rem;}
+nav a.l:hover{color:var(--fg)}
+.lang{display:flex;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.lang button{background:none;border:0;padding:5px 11px;font:inherit;font-size:.8rem;font-weight:600;color:var(--mut);cursor:pointer}
+.lang button.on{background:var(--btn);color:#fff}
+section{padding:72px 0}
+h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.05;letter-spacing:-.03em;margin:.3em 0;font-weight:800}
+h1 em{font-style:normal;color:var(--acc)}
+h2{font-size:clamp(1.6rem,4vw,2.3rem);letter-spacing:-.02em;margin:0 0 .3em}
+.eyebrow{font-size:.8rem;text-transform:uppercase;letter-spacing:.14em;color:var(--acc);font-weight:600}
+.lead{font-size:1.15rem;color:var(--mut);max-width:620px}
+.hero{position:relative;overflow:hidden;padding:90px 0 80px;background:var(--bg)}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease}
+.hero video.on{opacity:1}
+.hero .shade{position:absolute;inset:0;background:linear-gradient(rgba(26,29,35,.55),rgba(26,29,35,.85))}
+.hero .wrap{position:relative;z-index:1}
+.hero .lead{color:#d5dcea}
+.pill{display:inline-block;margin-top:22px;background:var(--btn);color:#fff;padding:12px 24px;border-radius:99px;text-decoration:none;font-weight:600}
+.pill.o{background:none;color:var(--fg);border:1px solid var(--line);margin-left:8px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));margin-top:28px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.card h3{margin:.4em 0 .2em;font-size:1.1rem}
+.card p{margin:0;color:var(--mut);font-size:.95rem}
+.ico{font-size:1.6rem}
+.work{border-radius:16px;overflow:hidden;background:var(--card);border:1px solid var(--line)}
+.thumb{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:1.1rem}
+.work div.t{padding:14px 18px}
+.work h3{margin:0;font-size:1.05rem}
+.work p{margin:.2em 0 0;color:var(--mut);font-size:.9rem}
+.c1{background:linear-gradient(135deg,#2563eb,#60a5fa)}.c2{background:linear-gradient(135deg,#1e3a8a,#3b82f6)}.c3{background:linear-gradient(135deg,#0ea5e9,#e0f2fe);color:#0b2a5b}
+.contact a{color:var(--acc);text-decoration:none;font-weight:600}
+.contact li{list-style:none;margin:.5em 0}
+.contact ul{padding:0}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--mut);font-size:.85rem;text-align:center}
+@media(max-width:640px){nav a.l{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav>
+<a class="l" href="#home" data-i18n="nav_home"></a>
+<a class="l" href="#technics" data-i18n="nav_tech"></a>
+<a class="l" href="#portfolio" data-i18n="nav_port"></a>
+<a class="l" href="#contacts" data-i18n="nav_contact"></a>
+<div class="lang"><button data-l="id">ID</button><button data-l="en">EN</button></div>
+</nav></div></header>
+
+<section id="home" class="hero">
+<video class="on" muted playsinline preload="auto"></video>
+<video muted playsinline preload="auto"></video>
+<div class="shade"></div>
+<div class="wrap">
+<div style="width:fit-content">
+<h1 class="logo">UsWorks</h1>
+</div>
+<div class="eyebrow" data-i18n="eyebrow"></div>
+<h1 data-i18n-html="vision"></h1>
+<p class="lead" data-i18n="desc"></p>
+<a class="pill" href="#portfolio" data-i18n="cta1"></a><a class="pill o" href="#contacts" data-i18n="cta2"></a>
+</div>
+</section>
+
+<main class="wrap">
+<section id="technics">
+<h2 data-i18n="tech_title"></h2>
+<p class="lead" data-i18n="tech_lead"></p>
+<div class="grid">
+</div>
+</section>
+
+<section id="portfolio">
+<h2 data-i18n="port_title"></h2>
+<div class="grid">
+<div class="work"><div class="thumb c1">Zenodeon's Keyboard Game</div><div class="t"><h3 data-i18n="p1h"></h3><p data-i18n="p1desc"></p></div></div>
+<div class="work"><div class="thumb c2">UZI MV</div><div class="t"><h3 data-i18n="p2h"></h3><p data-i18n="p2desc"></p></div></div>
+</div>
+</section>
+
+<section id="contacts" class="contact">
+<div class="eyebrow" data-i18n="nav_contact"></div>
+<h2 data-i18n="contact_title"></h2>
+<p class="lead" data-i18n="contact_lead"></p>
+<ul>
+<li>Email: <a href="mailto:studio-usworks@pm.me">studio-usworks@pm.me</a></li>
+<li>Tiktok: <a href="https://www.tiktok.com/@studio.usworks">@studio.usworks</a></li>
+</ul>
+</section>
+</main>
+
+<script>
+const T={
+id:{nav_home:"Beranda",nav_tech:"Teknik",nav_port:"Portofolio",nav_contact:"Kontak",
+eyebrow:"Studio Animasi",
+vision:"Mengembangkan budaya seni yang menjadi <em>simbol animasi Indonesia</em>",
+desc:"Animasi berkualitas dengan harga terjangkau dengan rate di bawah rata-rata pasar tanpa mengorbankan mutu.",
+cta1:"Lihat Karya",cta2:"Hubungi Kami",
+tech_title:"Teknik Kami untuk Animasi 2D",tech_lead:"Kami menggunakan perangkat-perangkat lunak gratis, seperti Blender, Krita, dan OpenToonz untuk membuat animasi kami, sehingga biaya produksi lebih terjangkau. Kami juga menggunakan teknik animasi 2D mesh deform dan tweening yang dicampur dengan animasi frame-by-frame. Hal ini ditujukan untuk memotong waktu produksi sambil tetap menghasilkan kualitas yang bagus.",
+port_title:"Portofolio", p1h:"Zenodeon's Keyboard Game",p2h:"UZI MV", p1desc: "2D Keyboard Skin Animator", p2desc:"Coming Soon",
+contact_title:"Mari Berkolaborasi",contact_lead:"Proyek anda butuh animasi? Ceritakan ke kami.",
+rights:"Hak cipta dilindungi."},
+en:{nav_home:"Home",nav_tech:"Technics",nav_port:"Portfolio",nav_contact:"Contacts",
+eyebrow:"An Animation Studio",
+vision:"Growing an art culture that becomes a <em>symbol of Indonesian Animation</em>",
+desc:"Quality animation at an affordable price with rates sit below the market average without compromising quality.",
+cta1:"View Our Work",cta2:"Contact Us",
+tech_title:"Our Technics",tech_lead:"We use free software, such as Blender, Krita, and OpenToonz, to create our animations, lowering production costs. We also employ 2D mesh deformation and tweening techniques combined with frame-by-frame animation. This approach lets us reduce production time while still delivering high quality animations.",
+port_title:"Portfolio",p1h:"Zenodeon's Keyboard Game",p2h:"UZI MV",p1desc: "2D Keyboard Skin Animator", p2desc:"Coming Soon",
+contact_title:"Let's Collaborate",contact_lead:"Have an animation project? Tell us about it.",
+rights:"All rights reserved."}};
+function setLang(l){
+ document.documentElement.lang=l;
+ document.querySelectorAll('[data-i18n]').forEach(e=>e.textContent=T[l][e.dataset.i18n]);
+ document.querySelectorAll('[data-i18n-html]').forEach(e=>e.innerHTML=T[l][e.dataset.i18nHtml]);
+ document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
+ try{localStorage.setItem('lang',l)}catch(e){}
+}
+document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+let init='id';try{init=localStorage.getItem('lang')||'id'}catch(e){}
+setLang(init==='en'?'en':'id');
+
+/* ===== Hero background video playlist =====
+   Isi daftar di bawah dengan nama file mp4 Anda (urutan = urutan putar).
+   Setelah klip terakhir selesai, kembali ke klip pertama. */
+const clips=[
+ 'videos/clip1.mp4',
+ 'videos/clip2.mp4',
+ 'videos/clip3.mp4'
+];
+(function(){
+ const vs=[...document.querySelectorAll('.hero video')];
+ let cur=0, idx=0;
+ const load=(v,n)=>{v.src=clips[n%clips.length];v.load();};
+ load(vs[0],0);
+ if(clips.length>1) load(vs[1],1);
+ vs[0].play().catch(()=>{});
+ vs.forEach((v,k)=>v.addEventListener('ended',()=>{
+  if(k!==cur) return;
+  if(clips.length===1){v.currentTime=0;v.play();return;}
+  const nx=1-cur;
+  vs[nx].currentTime=0;
+  vs[nx].play().catch(()=>{});
+  vs[nx].classList.add('on');
+  v.classList.remove('on');
+  cur=nx; idx=(idx+1)%clips.length;
+  setTimeout(()=>load(v,idx+1),1200); /* siapkan klip berikutnya di video yang baru selesai */
+ }));
+})();
+</script>
+</body>
+</html>
